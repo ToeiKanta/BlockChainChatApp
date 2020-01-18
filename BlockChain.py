@@ -9,7 +9,7 @@ blockNoToEdit = 4
 
 class Block:
     #each block has 7 attributes 
-  
+    
     #1 number of the block
     blockNo = 0
     #2 what data is stored in this block?

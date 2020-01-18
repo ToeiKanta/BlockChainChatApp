@@ -46,13 +46,13 @@ def decrypt_message(encoded_encrypted_msg, encoded_secret_key, padding_character
 
 ####### BEGIN HERE #######
 
-private_msg = """Test Message"""
-padding_character = "{"
+# private_msg = """Test Message"""
+# padding_character = "{"
 
-secret_key = generate_secret_key_for_AES_cipher()
-encrypted_msg = encrypt_message(private_msg, secret_key, padding_character)
-decrypted_msg = decrypt_message(encrypted_msg, secret_key, padding_character)
+# secret_key = generate_secret_key_for_AES_cipher()
+# encrypted_msg = encrypt_message(private_msg, secret_key, padding_character)
+# decrypted_msg = decrypt_message(encrypted_msg, secret_key, padding_character)
 
-print ("   Secret Key: %s - (%d)" % (secret_key, len(secret_key)))
-print ("Encrypted Msg: %s - (%d)" % (encrypted_msg, len(encrypted_msg)))
-print ("Decrypted Msg: %s - (%d)" % (decrypted_msg, len(decrypted_msg)))
+# print ("   Secret Key: %s - (%d)" % (secret_key, len(secret_key)))
+# print ("Encrypted Msg: %s - (%d)" % (encrypted_msg, len(encrypted_msg)))
+# print ("Decrypted Msg: %s - (%d)" % (decrypted_msg, len(decrypted_msg)))

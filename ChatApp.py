@@ -43,10 +43,12 @@ class Server:
 			cThread = threading.Thread(target=self.handler,args=(c,a))
 			cThread.daemon = True
 			cThread.start()
+			
 			self.connections.append(c)
 			print(str(a[0])+':'+str(a[1])+" connected")
 
 class Client:
+	key_aes = ''
 	sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	def sendMsg(self):
 		while True:
@@ -54,7 +56,18 @@ class Client:
 			self.sock.send(data)
 	def __init__(self,address):
 		self.sock.connect((address,20002))
-		
+		print("Welcome to BlockChat")
+		print("What do you want?")
+		print("enter 1 to create new group:")
+		print("enter 2 to join group:")
+		mode = input("")
+		if(mode == "1"):
+			self.key_aes = AES_Cyptography.generate_secret_key_for_AES_cipher()
+			print("Key generated : " + str(self.key_aes))
+		elif(mode == "2"):
+			print("Please enter secrete group key :")
+			self.key_aes = input("")
+			
 		iThread = threading.Thread(target=self.sendMsg)
 		iThread.daemon = True
 		iThread.start()
