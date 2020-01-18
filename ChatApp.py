@@ -3,6 +3,11 @@ import threading
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'BlockChain'))
 import BlockChain
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'AES_Cyptography'))
+import AES_Cyptography
+
+# Run BlockChain
+blockchain = BlockChain.Blockchain()
 
 class Server:
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,12 +20,14 @@ class Server:
 			data = bytes(input(""),'utf-8')
 			for connection in self.connections:
 				connection.send(data)
-				# print(data)
 	def handler(self,c,a):
 		while True:
 			data = c.recv(1024)
+			# Mining Block
+			block = BlockChain.Block(data)
+			blockchain.mine(block)
 			for connection in self.connections:
-				connection.send(data)
+				connection.send(bytes(str(block),'utf-8'))
 				# print(data)
 			if not data:
 				print(str(a[0])+':'+str(a[1])+" disconnected")
@@ -43,7 +50,8 @@ class Client:
 	sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	def sendMsg(self):
 		while True:
-			self.sock.send(bytes(input(""),'utf-8'))
+			data = bytes(input(""),'utf-8')
+			self.sock.send(data)
 	def __init__(self,address):
 		self.sock.connect((address,20002))
 		

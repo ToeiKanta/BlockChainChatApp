@@ -113,7 +113,7 @@ class Blockchain:
                 break
             else:
                 block.nonce += 1
-   
+    
     ## Show demo 3 ! Mine a block
     #initialize blockchain
 
