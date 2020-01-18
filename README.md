@@ -17,3 +17,6 @@ Install pycryptodome are optional
 `python3 ChatApp.py <ip> <port>`<br>
 Ex.
 `python3 ChatApp.py localhost 8081`
+
+# Screen shot
+![screen shot](./markdown/screenshot.png)
