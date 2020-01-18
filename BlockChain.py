@@ -9,7 +9,7 @@ blockNoToEdit = 4
 
 class Block:
     #each block has 7 attributes 
-    
+
     #1 number of the block
     blockNo = 0
     #2 what data is stored in this block?
@@ -117,14 +117,9 @@ class Blockchain:
     ## Show demo 3 ! Mine a block
     #initialize blockchain
 
-
-
-    
+# old example
 # blockchain = Blockchain()
 
-# #mine 10 blocks
-# # for n in range(10):
-#     # blockchain.mine(Block("Block " + str(n+1)))
 # blockchain.mine(Block("Block 1"))
 # blockchain.mine(Block("Block 2"))
 # blockchain.mine(Block("Block 3"))
