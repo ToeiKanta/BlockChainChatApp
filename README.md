@@ -11,12 +11,12 @@ Install pycryptodome are optional
 `/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 install pycryptodome` <br>
 
 ## Getting Start Window
-1. install python 3<br>
+1. Install python 3<br>
 [Download](https://www.python.org/download/releases/3.0/)
-2. make sure you use python v. >3.0 by `python --version`
-3. upgrade pip `python -m pip install --upgrade pip`
-4. install pycryptodome `pip install pycryptodome`
-5. install colorama `pip install colorama`
+2. Make sure you use python v. >3.0 by `python --version`
+3. Upgrade pip `python -m pip install --upgrade pip`
+4. Install module pycryptodome `pip install pycryptodome`
+5. Install module colorama `pip install colorama`
 
 ## Start Program
   - **START SERVER command**<br>
