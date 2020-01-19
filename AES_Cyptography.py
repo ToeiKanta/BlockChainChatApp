@@ -38,13 +38,13 @@ class AESCipher:
         return unpad(self.cipher.decrypt(raw[AES.block_size:]), AES.block_size)
 
 
-if __name__ == '__main__':
-    print('TESTING ENCRYPTION')
-    msg = input('Message...: ')
-    pwd = input('Password..: ')
-    print('Ciphertext:', AESCipher(pwd).encrypt(msg).decode('utf-8'))
+# if __name__ == '__main__':
+#     print('TESTING ENCRYPTION')
+#     msg = input('Message...: ')
+#     pwd = input('Password..: ')
+#     print('Ciphertext:', AESCipher(pwd).encrypt(msg).decode('utf-8'))
 
-    print('\nTESTING DECRYPTION')
-    cte = input('Ciphertext: ')
-    pwd = input('Password..: ')
-    print('Message...:', AESCipher(pwd).decrypt(cte).decode('utf-8'))
+#     print('\nTESTING DECRYPTION')
+#     cte = input('Ciphertext: ')
+#     pwd = input('Password..: ')
+#     print('Message...:', AESCipher(pwd).decrypt(cte).decode('utf-8'))
