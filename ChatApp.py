@@ -1,3 +1,5 @@
+# ASCII generator http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+
 import socket
 import threading
 import sys, os
@@ -39,14 +41,26 @@ class Server:
 		self.sock.listen(1)
 	def sendBoardcast(self):
 		while True:
-			data = bytes(input(""),'utf-8')
-			for connection in self.connections:
-				connection.send(data)
-
+			try:
+				data = bytes(input(""),'utf-8')
+				if(data == "exit"):
+					print("Close Server")
+					os.kill(os.getpid(), 9)
+				for connection in self.connections:
+					connection.send(data)
+			except EOFError as error:
+				print("Close Server")
+				os.kill(os.getpid(), 9)
 	# recieve msg handler from Client
 	def handler(self,c,a):
 		while True:
-			data = c.recv(1024)
+			try:
+				data = c.recv(1024)
+			except Exception as error:
+				print(str(a[0])+':'+str(a[1])+" disconnected")
+				self.connections.remove(c)
+				c.close()
+				break
 			#create new block
 			block = BlockChain.Block(data.decode('utf-8'))
 			blockchain.mine(block)
@@ -113,19 +127,23 @@ class Client:
 	def sendMsg(self):
 		# When Client send msg
 		while True:
-			private_msg = input("")
-			if(private_msg == "exit"):
-				print("Please enter CTRL+C to Exit")
-				sys.exit(1)
-			secret_key = self.key_aes
-			padding_character = self.padding_character
-			data = {
-				"groupId" : str(self.groupId),
-				"sender" : str(self.name),
-				"msg" : str(AES_Cyptography.encrypt_message(private_msg, secret_key, padding_character).decode('utf-8'))
-			}
-			jsonData = json.dumps(data)
-			self.sock.send(bytes(jsonData,"utf-8"))
+			try:
+				private_msg = input("")
+				if(private_msg == "exit"):
+					print("Close connection")
+					os.kill(os.getpid(), 9)
+				secret_key = self.key_aes
+				padding_character = self.padding_character
+				data = {
+					"groupId" : str(self.groupId),
+					"sender" : str(self.name),
+					"msg" : str(AES_Cyptography.AESCipher(secret_key).encrypt(private_msg).decode('utf-8'))
+				}
+				jsonData = json.dumps(data)
+				self.sock.send(bytes(jsonData,"utf-8"))
+			except EOFError as error:
+				print("Close connections")
+				os.kill(os.getpid(), 9)
 	def __init__(self,address,port):
 		self.sock.connect((address,int(port)))
 		print(Fore.LIGHTGREEN_EX)
@@ -162,8 +180,7 @@ $$ |  $$\ $$ |  $$ |$$  __$$ | $$ |$$\
                                             
 """)
 		print("//////////////// U R Anonymus //////////////////")
-		print("ENTER your name :")
-		self.name = input("")
+		self.name = input("ENTER your name : ")
 		print("==========================")
 		print("    Choose mode")
 		print("==========================")
@@ -171,29 +188,27 @@ $$ |  $$\ $$ |  $$ |$$  __$$ | $$ |$$\
 		print("ENTER 2 to JOIN group:")
 		print("==========================")
 		while True:
-			mode = input("")
+			mode = input("Mode : ")
 			# create new group
 			if(mode == "1"):
 				print("/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/")
 				print("You select mode 1 (create new group chat):")
 				print("/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/")
 				# create AES key
-				self.key_aes = AES_Cyptography.generate_secret_key_for_AES_cipher()
+				self.key_aes = randomString(20).upper()
 				# create group ID
 				self.groupId = randomString(10).upper()
 				print("==============================================================")
 				print(Fore.LIGHTGREEN_EX,"This is your group id (send to your friend) : ")
 				print(Fore.LIGHTCYAN_EX,str(self.groupId))
-				print(Fore.LIGHTGREEN_EX,"This is yout secrete group key (send to your friend) : ")
-				print(Fore.LIGHTCYAN_EX,str(self.key_aes.decode("utf-8")))
+				print(Fore.LIGHTGREEN_EX,"This is your secrete group key (send to your friend) : ")
+				print(Fore.LIGHTCYAN_EX,str(self.key_aes))
 				print(Fore.LIGHTGREEN_EX,"==============================================================")
 				break
 			elif(mode == "2"):
 				print("==================================")
-				print("Enter Group ID :")
-				self.groupId = input("")
-				print("Please enter secrete group key :")
-				self.key_aes = input("")
+				self.groupId = input("Enter Group ID :")
+				self.key_aes = input("Please enter secrete group key : ")
 				break
 		print(Fore.LIGHTYELLOW_EX)
 		print("////////// WELCOME TO CHAT ROOM ///////////")
@@ -214,7 +229,7 @@ $$ |  $$\ $$ |  $$ |$$  __$$ | $$ |$$\
 			sender = newBlock["sender"]
 			msg = newBlock["msg"]
 			if (groupId == self.groupId):
-				print(str(sender) + " : " + str(AES_Cyptography.decrypt_message(msg, self.key_aes, self.padding_character).decode('utf-8')))
+				print(str(sender) + " : " + str(AES_Cyptography.AESCipher(self.key_aes).decrypt(msg).decode('utf-8')))
 
 if(len(sys.argv)>2):
 	client = Client(sys.argv[1],sys.argv[2])
