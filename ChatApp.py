@@ -25,6 +25,7 @@ from colorama import Fore, Back, Style
 
 # Run BlockChain
 blockchain = BlockChain.Blockchain()
+genesisBlock = blockchain.head
 
 #Random String for Generate Key and GroupId
 def randomString(stringLength=10):
@@ -52,12 +53,14 @@ class Server:
 				data = bytes(input(""),'utf-8')
 				# if u type "exit" to console
 				# It will terminate program
+				if(len(data.split()) == 2):
+					BlockChain.editBlock(blockchain,genesisBlock, int(data.split()[1]))
 				if(data == "exit"):
 					print("Close Server")
 					os.kill(os.getpid(), 9)
 				# sending msg to all client
-				for connection in self.connections:
-					connection.send(data)
+				# for connection in self.connections:
+				# 	connection.send(data)
 			# catch error when press CTRL+C and Terminate program
 			except EOFError as error:
 				print("Close Server")

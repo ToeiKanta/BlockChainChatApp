@@ -4,6 +4,11 @@ import datetime
 import hashlib
 #defining the 'block' data structure
 
+# Module for colorfull console 
+from colorama import init
+init()
+from colorama import Fore, Back, Style
+
 #Tell Which block to edit
 blockNoToEdit = 4
 
@@ -158,9 +163,31 @@ class Blockchain:
 #         blockchain.head = blockchain.head.next
 #     print("==== end show edited data =====")
 
-# blockchain.head = genesisBlock
-# #print out each block in the blockchain
-# while blockchain.head.next != None:
-#     if(blockchain.head.hash() != blockchain.head.next.previous_hash):
-#         print("Block No. " +  str(blockchain.head.blockNo) + " had been edited...")
-#     blockchain.head = blockchain.head.next
+# Edit block and show edited
+def editBlock(blockchain,genesisBlock,index):
+    #Edit Block
+    i=0
+    for x in range(index):
+        blockchain.head = blockchain.head.next
+        i += 1
+    print("==========================")
+    print("edit Block no."+str(i))
+    print("==========================\n")
+    blockchain.head.data = "Edited"
+
+    # Check if block have edited
+    blockchain.head = genesisBlock
+    temp = genesisBlock
+    #print out each block in the blockchain
+    while blockchain.head.next != None:
+        if(blockchain.head.hash() != blockchain.head.next.previous_hash):
+            print(Fore.LIGHTRED_EX)
+            print("Block No. " +  str(blockchain.head.blockNo) + " had been edited...")
+            print("=========Show Edited==========")
+            print(str(temp))
+            print(str(blockchain.head))
+            print(str(blockchain.head.next))
+            print("=========End Edited=========")
+            print(Fore.WHITE)
+        temp = blockchain.head
+        blockchain.head = blockchain.head.next
