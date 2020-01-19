@@ -1,13 +1,14 @@
 # BlockChain ChatApp (SUT BlockChat)
 
 ## Getting Start MacOs
-1. install python 3
+1. install python 3 <br>
+[Download](https://www.python.org/download/releases/3.0/)
 2. install pip
-3. install pyCrpto <br>
-`/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 install pycrypto` <br>
+3. uninstall pyCrpto (if exist) <br>
+`/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 uninstall pycrypto` <br>
 or <br>
-`pip3 install pycrypto`<br><br>
-Install pycryptodome are optional
+`pip3 uninstall pycrypto`<br><br>
+4. Install pycryptodome
 `/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 install pycryptodome` <br>
 
 ## Getting Start Window
@@ -15,7 +16,8 @@ Install pycryptodome are optional
 [Download](https://www.python.org/download/releases/3.0/)
 2. Make sure you use python v. >3.0 by `python --version`
 3. Upgrade pip `python -m pip install --upgrade pip`
-4. Install module pycryptodome `pip install pycryptodome`
+4. Install module pycryptodome `pip install pycryptodome` <br>
+   uninstall pycrypto if exist `pip uninstall pycrypto`
 5. Install module colorama `pip install colorama`
 
 ## Start Program
