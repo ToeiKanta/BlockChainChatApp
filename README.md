@@ -28,6 +28,7 @@ Ex.
 `python ChatApp.py localhost 8081`
   - **You can run with**<br>
 `python <YOUR_PATH_To_PROJECT>/ChatApp.py <ip> <port>`<br>
-ex. `python Documents/GitHub/BlockChainChatApp/ChatApp.py 8081`
+Ex. 
+`python Documents/GitHub/BlockChainChatApp/ChatApp.py 8081`
 # Screen shot
 ![screen shot](./markdown/screenshot.png)
