@@ -1,9 +1,9 @@
 # BlockChain ChatApp (SUT BlockChat)
 
 ## Getting Start
-- install python 3
-- install pip
-- install pyCrpto <br>
+1. install python 3
+2. install pip
+3. install pyCrpto <br>
 `/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 install pycrypto` <br>
 or <br>
 `pip3 install pycrypto`<br><br>
