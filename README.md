@@ -20,12 +20,14 @@ Install pycryptodome are optional
 
 ## Start Program
   - **START SERVER command**<br>
-`python3 ChatApp.py <port>`<br>
-`python3 ChatApp.py 8081`<br>
+`python ChatApp.py <port>`<br>
+`python ChatApp.py 8081`<br>
   - **START CLIENT with ip**<br>
-`python3 ChatApp.py <ip> <port>`<br>
+`python ChatApp.py <ip> <port>`<br>
 Ex.
-`python3 ChatApp.py localhost 8081`
-
+`python ChatApp.py localhost 8081`
+  - **You can run with**<br>
+`python <YOUR_PATH_To_PROJECT>/ChatApp.py <ip> <port>`<br>
+ex. `python Documents/GitHub/BlockChainChatApp/ChatApp.py 8081`
 # Screen shot
 ![screen shot](./markdown/screenshot.png)
