@@ -2,6 +2,7 @@
 
 ## Getting Start
 - install python 3
+- install pip
 - install pyCrpto <br>
 `/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3 install pycrypto` <br>
 or <br>
